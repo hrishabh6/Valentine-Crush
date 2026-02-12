@@ -32,8 +32,27 @@ const nothing = Nothing_You_Could_Do({
 });
 
 export const metadata: Metadata = {
-  title: "Our Story | Will You Be My Valentine?",
-  description: "A journey through our moments together.",
+  title: "Our Story | Will You Be My Valentine? 💕",
+  description: "I made something special for you. Click to see our story, one click at a time… 🍊❤️",
+  openGraph: {
+    title: "Someone special made this for you 💕",
+    description: "A love letter wrapped in a little website. Open it… it's for you 🍊❤️",
+    images: [
+      {
+        url: "/images/p1.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Our Story",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Someone special made this for you 💕",
+    description: "A love letter wrapped in a little website. Open it… it's for you 🍊❤️",
+    images: ["/images/p1.jpeg"],
+  },
 };
 
 export default function RootLayout({
