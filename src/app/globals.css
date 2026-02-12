@@ -45,6 +45,35 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Valentine Theme Colors */
+  --color-blush-coral: var(--blush-coral);
+  --color-soft-pink: var(--soft-pink);
+  --color-vintage-lace: var(--vintage-lace);
+  --color-ruby-pop: var(--ruby-pop);
+  --color-cream-bg: var(--cream-bg);
+
+  /* Fonts */
+  --font-playfair: var(--font-playfair);
+  --font-cormorant: var(--font-cormorant);
+  --font-great-vibes: var(--font-great-vibes);
+  --font-nothing: var(--font-nothing);
+
+  /* Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
 }
 
 :root {
@@ -80,6 +109,18 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Valentine Palette */
+  --blush-coral: #EA9975;
+  --soft-pink: #EEAAC0;
+  --vintage-lace: #BEC0E2;
+  --ruby-pop: #FEC082;
+  --cream-bg: #F8F5F2;
+
+  /* Glassmorphism Tokens */
+  --glass-white: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --shadow-soft: rgba(234, 153, 117, 0.12);
 }
 
 .dark {
@@ -120,7 +161,63 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cream-bg text-foreground overflow-x-hidden;
   }
+}
+
+@utility glass-card {
+  background: var(--glass-white);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--shadow-soft);
+}
+
+@utility glass-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+@utility text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(135deg, var(--blush-coral) 0%, var(--soft-pink) 100%);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Custom Cursor */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ruby-pop);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
 }
