@@ -68,7 +68,7 @@ function MemoryCard({ front, back }: { front: any, back: any }) {
                         {/* Polaroid effect */}
                         <div className="bg-white p-4 pb-12 shadow-md rotate-1 h-full flex flex-col transform transition-transform group-hover:rotate-0">
                             <div className="flex-grow overflow-hidden relative bg-gray-100">
-                                <img src={front.image} className="absolute inset-0 w-full h-full object-cover" alt="Memory" />
+                                <img src={front.image} className="absolute inset-0 w-full h-full object-cover" alt="Memory" loading="lazy" decoding="async" />
                             </div>
                             <p className="font-nothing text-center mt-6 text-2xl text-gray-700">
                                 {front.label}

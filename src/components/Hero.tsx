@@ -17,30 +17,16 @@ export function Hero({ onStartJourney }: { onStartJourney: () => void }) {
 
     const handleNo = () => {
         setResponse("no");
-        const end = Date.now() + 1000;
-
         const colors = ['#EA9975', '#EEAAC0', '#FEC082'];
 
-        (function frame() {
-            confetti({
-                particleCount: 3,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: colors
-            });
-            confetti({
-                particleCount: 3,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: colors
-            });
-
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            }
-        }());
+        // Single burst — same visual, no sustained GPU load
+        confetti({
+            particleCount: 80,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors,
+            ticks: 120,
+        });
     };
 
     return (

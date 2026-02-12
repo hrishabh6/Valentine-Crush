@@ -27,28 +27,12 @@ export function Proposal() {
 
   const handleYesClick = () => {
     setAccepted(true);
-    confetti({
-      particleCount: 200,
-      spread: 100,
-      origin: { y: 0.6 },
-      colors: ['#EA9975', '#EEAAC0', '#FEC082']
-    });
-    
-    // Continuous confetti for celebration
-    const duration = 3000;
-    const animationEnd = Date.now() + duration;
-    
-    const interval: any = setInterval(function() {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
-      const particleCount = 50 * (timeLeft / duration);
-      confetti({
-        particleCount,
-        origin: { x: Math.random(), y: Math.random() - 0.2 }
-      });
-    }, 250);
+
+    // Three quick bursts instead of continuous setInterval
+    const colors = ['#EA9975', '#EEAAC0', '#FEC082'];
+    confetti({ particleCount: 100, spread: 100, origin: { y: 0.6 }, colors, ticks: 150 });
+    setTimeout(() => confetti({ particleCount: 60, spread: 80, origin: { x: 0.3, y: 0.5 }, colors, ticks: 120 }), 400);
+    setTimeout(() => confetti({ particleCount: 60, spread: 80, origin: { x: 0.7, y: 0.5 }, colors, ticks: 120 }), 800);
   };
 
   return (
@@ -59,6 +43,8 @@ export function Proposal() {
             src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=2000" 
             alt="Us" 
             className="w-full h-full object-cover opacity-30"
+            loading="lazy"
+            decoding="async"
          />
          <div className="absolute inset-0 bg-gradient-to-t from-cream-bg via-cream-bg/80 to-transparent" />
       </div>
@@ -99,7 +85,7 @@ export function Proposal() {
                             animate={{ x: noButtonPos.x, y: noButtonPos.y }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             className={cn(
-                                "border-2 border-slate-300 text-slate-500 px-8 py-4 rounded-full text-xl hover:bg-slate-100 transition-colors bg-white/50 backdrop-blur-sm z-10",
+                                "border-2 border-slate-300 text-slate-500 px-8 py-4 rounded-full text-xl hover:bg-slate-100 transition-colors bg-white/60 z-10",
                                 noCount >= 4 && "opacity-50 cursor-not-allowed"
                             )}
                             disabled={noCount >= 4}
