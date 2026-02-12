@@ -2,13 +2,10 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface TimelineItemProps {
   image: string;
-  date: string;
-  location: string;
   caption: string;
   index: number;
 }
@@ -16,94 +13,71 @@ interface TimelineItemProps {
 const timelineData = [
   {
     image: "/images/p1.jpeg",
-    date: "Feb 14, 2023",
-    location: "Central Park",
-    caption: "The day I realized your laugh is my favorite sound."
+    caption: "Life is better with you by my side."
   },
   {
     image: "/images/p2.jpeg",
-    date: "Mar 20, 2023",
-    location: "Joe's Pizza",
-    caption: "You ordered pineapple and I didn't run away. True love."
+    caption: "My favorite place is wherever you are."
   },
   {
     image: "/images/p3.jpeg",
-    date: "May 15, 2023",
-    location: "Kyoto, Japan",
-    caption: "Getting lost with you is better than knowing the way."
+    caption: "You make every moment magical."
   },
   {
     image: "/images/p4.jpeg",
-    date: "July 4, 2023",
-    location: "Rooftop Party",
-    caption: "Holding your hand for the first time."
+    caption: "Loving you is the easiest thing I've ever done."
   },
   {
     image: "/images/p5.jpeg",
-    date: "Oct 31, 2023",
-    location: "Halloween Bash",
-    caption: "We looked ridiculous, and it was perfect."
+    caption: "Forever grateful for you."
   },
   {
     image: "/images/p6.jpeg",
-    date: "Dec 31, 2023",
-    location: "Times Square",
-    caption: "Starting the new year with my favorite person."
+    caption: "You are my greatest adventure."
   },
   {
     image: "/images/p7.jpeg",
-    date: "Jan 1, 2024",
-    location: "Home",
-    caption: "Just us. The best way to be."
+    caption: "You complete me in every way."
   }
 ];
 
-/**
- * TimelineItem — Performance-optimized parallax card.
- *
- * Removed:
- *  - `filter: blur(Npx)` driven by useTransform — blur() forces full-layer
- *    repaint on every scroll frame. Replaced with opacity fade which is
- *    GPU-composited (cheap).
- *  - `backdrop-filter: blur()` on date/location badges — these are inside
- *    a scrolling container and cause compositing overhead. Replaced with
- *    solid semi-transparent backgrounds.
- *
- * Kept:
- *  - translateY parallax via `useTransform` → only triggers GPU compositing
- *  - opacity fade via `useTransform` → GPU compositing, zero layout cost
- *  - scale via `useTransform` → GPU compositing
- */
-function TimelineItem({ image, date, location, caption, index }: TimelineItemProps) {
+function TimelineItem({ image, caption, index }: TimelineItemProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  // All three are GPU-compositable transforms — no layout or paint cost
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.92, 1, 1, 0.92]);
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [index % 2 === 0 ? -5 : 5, index % 2 === 0 ? 5 : -5]);
 
   return (
     <motion.div
       ref={ref}
-      style={{ y, opacity, scale, willChange: "transform, opacity" }}
+      style={{ y, opacity, willChange: "transform, opacity" }}
       className={cn(
-        "relative flex w-full mb-24 items-center",
-        index % 2 === 0 ? "justify-start md:justify-center" : "justify-end md:justify-center"
+        "relative flex w-full mb-24 items-center justify-center"
       )}
     >
-      <div
-        className={cn(
-          "p-4 rounded-3xl group cursor-pointer relative max-w-sm md:max-w-md w-full",
-          "bg-white/30 border border-white/40 shadow-xl",
-          "transition-transform duration-300 hover:scale-[1.03] hover:rotate-0",
-          index % 2 === 0 ? "-rotate-2" : "rotate-2"
-        )}
+      <motion.div
+        style={{ rotate }}
+        className="relative group cursor-pointer p-4 bg-white shadow-2xl transition-transform duration-500 hover:scale-105 hover:z-10"
       >
-        <div className="aspect-[4/5] overflow-hidden rounded-2xl relative">
+        {/* Decorative Frame Border - double border effect */}
+        <div className="absolute inset-0 border-2 border-dashed border-ruby-pop/30 m-2 pointer-events-none" />
+
+        {/* Heart Decor - Top Left */}
+        <div className="absolute -top-3 -left-3 text-ruby-pop/80 transform -rotate-12 drop-shadow-sm">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
+        </div>
+
+        {/* Heart Decor - Bottom Right */}
+        <div className="absolute -bottom-3 -right-3 text-soft-pink/80 transform rotate-12 drop-shadow-sm">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
+        </div>
+
+        <div className="relative aspect-[4/5] w-64 md:w-80 overflow-hidden bg-gray-100">
           <img
             src={image}
             alt={caption}
@@ -112,52 +86,44 @@ function TimelineItem({ image, date, location, caption, index }: TimelineItemPro
             decoding="async"
           />
 
-          {/* Caption reveal — CSS transition, no Framer overhead */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="text-white font-inter text-lg leading-relaxed font-medium">
+          {/* Caption on Hover - Subtle Gradient Overlay */}
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6 text-center">
+            <p className="text-white font-nothing text-xl md:text-2xl leading-relaxed tracking-wide shadow-black drop-shadow-md">
               {caption}
             </p>
           </div>
         </div>
 
-        {/* Date stamp — solid bg, NO backdrop-filter */}
-        <div className="absolute -top-4 -right-4 bg-white text-gray-800 px-4 py-2 rounded-full font-nothing text-xl shadow-lg transform rotate-3">
-          {date}
+        {/* Bottom "Polaroid" Style Space */}
+        <div className="h-12 bg-white w-full flex items-center justify-center">
+          <div className="font-great-vibes text-gray-400 text-lg opacity-60">Love you ❤️</div>
         </div>
 
-        {/* Location pin — solid bg, NO backdrop-filter */}
-        <div className="absolute -bottom-4 -left-4 bg-white text-gray-600 px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-1 transform -rotate-2">
-          <MapPin size={14} className="text-blush-coral" />
-          {location}
-        </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
 
 export function Timeline() {
   return (
-    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-cream-bg to-soft-pink/10">
+    <section className="relative py-20 overflow-hidden bg-cream-bg">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-center font-playfair text-5xl md:text-7xl mb-32 text-transparent bg-clip-text bg-gradient-to-r from-blush-coral to-ruby-pop"
+          className="text-center font-playfair text-5xl md:text-7xl mb-24 text-transparent bg-clip-text bg-gradient-to-r from-blush-coral to-ruby-pop"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           Moments That Made Me Fall
         </motion.h2>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-12">
           {timelineData.map((item, i) => (
             <TimelineItem key={i} index={i} {...item} />
           ))}
         </div>
       </div>
-
-      {/* Center line — static, no animation cost */}
-      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-gradient-to-b from-transparent via-blush-coral/30 to-transparent -translate-x-1/2 z-0 hidden md:block" />
     </section>
   );
 }

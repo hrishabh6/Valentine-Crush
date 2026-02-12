@@ -126,7 +126,10 @@ export function Proposal() {
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1, rotate: [0, 10, -10, 0] }}
-                transition={{ delay: 0.2, type: "spring" }}
+                transition={{
+                  scale: { type: "spring", delay: 0.2 },
+                  rotate: { duration: 0.6, delay: 0.2, ease: "easeInOut" }
+                }}
                 className="inline-block mb-8 text-ruby-pop"
               >
                 <Heart size={100} fill="currentColor" className="filter drop-shadow-lg" />
@@ -134,14 +137,21 @@ export function Proposal() {
 
               <h3 className="font-playfair text-5xl md:text-7xl mb-6 text-gray-800">I knew you'd say yes! ❤️</h3>
 
-              <div className="mt-12 space-y-4">
-                <p className="text-2xl font-cormorant text-gray-600">Meet me at</p>
-                <p className="text-4xl md:text-5xl font-bold text-ruby-pop font-playfair">Le Petit Bistro</p>
-                <p className="text-2xl font-inter text-gray-700">Tomorrow at 7:00 PM</p>
-                <p className="text-lg text-gray-400 italic mt-8 font-inter">
-                  (Wear that black dress I love 😊)
-                </p>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5, y: 50 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 120, damping: 10 }}
+                className="mt-8 relative z-10"
+              >
+                  <img 
+                    src="/images/image.png" 
+                    alt="Celebration Meme" 
+                    className="rounded-xl shadow-2xl border-4 border-white/50 mx-auto max-w-[80%] md:max-w-md transform rotate-2 hover:rotate-0 transition-transform duration-300"
+                  />
+                  <p className="font-nothing text-2xl text-ruby-pop mt-4 rotate-[-2deg]">
+                    Me right now:
+                  </p>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
