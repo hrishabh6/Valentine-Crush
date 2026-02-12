@@ -9,7 +9,7 @@ const memories = [
     {
         id: 1,
         front: {
-            image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600",
+            image: "/images/p5.jpeg",
             label: "First Time We..."
         },
         back: {
@@ -19,7 +19,7 @@ const memories = [
     {
         id: 2,
         front: {
-            image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&q=80&w=600",
+            image: "/images/p6.jpeg",
             label: "You Didn't Know..."
         },
         back: {
@@ -29,7 +29,7 @@ const memories = [
     {
         id: 3,
         front: {
-            image: "https://images.unsplash.com/photo-1516962080544-eac695c93791?auto=format&fit=crop&q=80&w=600",
+            image: "/images/p7.jpeg",
             label: "My Favorite..."
         },
         back: {
@@ -39,7 +39,7 @@ const memories = [
     {
         id: 4,
         front: {
-            image: "https://images.unsplash.com/photo-1531747056595-07f6cbbe10fd?auto=format&fit=crop&q=80&w=600",
+            image: "/images/p8.jpeg",
             label: "Our Inside Joke"
         },
         back: {

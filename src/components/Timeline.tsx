@@ -15,43 +15,43 @@ interface TimelineItemProps {
 
 const timelineData = [
   {
-    image: "https://images.unsplash.com/photo-1516575334481-f85287c2c81d?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p1.jpeg",
     date: "Feb 14, 2023",
     location: "Central Park",
     caption: "The day I realized your laugh is my favorite sound."
   },
   {
-    image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p2.jpeg",
     date: "Mar 20, 2023",
     location: "Joe's Pizza",
     caption: "You ordered pineapple and I didn't run away. True love."
   },
   {
-    image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p3.jpeg",
     date: "May 15, 2023",
     location: "Kyoto, Japan",
     caption: "Getting lost with you is better than knowing the way."
   },
   {
-    image: "https://images.unsplash.com/photo-1621112904887-419379ce6824?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p4.jpeg",
     date: "July 4, 2023",
     location: "Rooftop Party",
     caption: "Holding your hand for the first time."
   },
   {
-    image: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p5.jpeg",
     date: "Oct 31, 2023",
     location: "Halloween Bash",
     caption: "We looked ridiculous, and it was perfect."
   },
   {
-    image: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p6.jpeg",
     date: "Dec 31, 2023",
     location: "Times Square",
     caption: "Starting the new year with my favorite person."
   },
   {
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
+    image: "/images/p7.jpeg",
     date: "Jan 1, 2024",
     location: "Home",
     caption: "Just us. The best way to be."
