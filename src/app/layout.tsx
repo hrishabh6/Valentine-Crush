@@ -44,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={cn(
           playfair.variable,
           cormorant.variable,
